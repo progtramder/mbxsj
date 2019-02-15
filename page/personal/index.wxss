@@ -1,0 +1,46 @@
+@import "../common/weui.wxss";
+.student-info {
+  display:flex;
+  height: 210rpx;
+  align-items: center;
+  background-color: white;
+  padding: 0 30rpx;
+}
+.student-info image {
+  border-radius: 50%;
+  width: 180rpx;
+  height: 180rpx;
+  box-sizing: border-box;
+}
+.student-info text {
+  margin-left: 50rpx;
+  flex: 1;
+}
+.title {
+  padding: 0 30rpx;
+  font-weight: bold;
+  color: orange;
+}
+.arrow {
+  padding-right: 26rpx;
+  position: relative;
+}
+.arrow:after {
+  content: " ";
+  display: block;
+  height: 15rpx;
+  width: 15rpx;
+  border-width: 3rpx 3rpx 0 0;
+  border-color: gray;
+  border-style: solid;
+  transform: matrix(0.71, 0.71, -0.71, 0.71, 0, 0);
+  position: absolute;
+  top: 50%;
+  margin-top: -8rpx;
+  right: 10rpx;
+}
+
+.preview-head {
+  font-weight: bold;
+  color: black
+}

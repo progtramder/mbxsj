@@ -1,0 +1,71 @@
+@import "../common/index.wxss";
+.page-body {
+  margin-bottom: 20rpx;
+}
+.status-not {
+  position: absolute;
+  top: 100%;
+  right: 20rpx;
+  transform: translateY(-100%);
+  font-size: 22rpx;
+  color: gray;
+  border-width: 1rpx;
+  border-style: solid;
+  border-radius: 30rpx;
+  line-height: 2rem;
+  width: 150rpx;
+  text-align: center;
+}
+
+.status-ready {
+  position: absolute;
+  top: 100%;
+  right: 20rpx;
+  transform: translateY(-100%);
+  font-size: 22rpx;
+  color: #0084FF;
+  border-color: #0084FF;
+  border-width: 1rpx;
+  border-style: solid;
+  border-radius: 30rpx;
+  line-height: 2rem;
+  width: 150rpx;
+  text-align: center;
+}
+
+.status-done {
+  position: absolute;
+  top: 100%;
+  right: 20rpx;
+  transform: translateY(-100%);
+  font-size: 22rpx;
+  color: gray;
+  border-color: gray;
+  border-width: 1rpx;
+  border-style: solid;
+  border-radius: 30rpx;
+  line-height: 2rem;
+  width: 150rpx;
+  text-align: center;
+}
+.status-cancel {
+  position: absolute;
+  top: 100%;
+  right: 20rpx;
+  transform: translateY(-100%);
+  font-size: 22rpx;
+  color: #F56C6C;
+  border-color: #F56C6C;
+  border-width: 1rpx;
+  border-style: solid;
+  border-radius: 30rpx;
+  line-height: 2rem;
+  width: 150rpx;
+  text-align: center;
+}
+
+.registed {
+  position: absolute;
+  top: 10rpx;
+  left: 300rpx;
+}

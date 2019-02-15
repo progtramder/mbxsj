@@ -1,0 +1,15 @@
+<view class="container">
+  <view class="page-body">
+    <view class="picture">
+      <image mode="widthFix" src="/image/main.jpg"/>
+    </view>
+    <navigator url="../course/index" class="nav-item">
+      <image class="icon" src="/image/baoming.png"/>
+      <view>课程报名</view>
+    </navigator>
+    <navigator url="../teacher/index" class="nav-item">
+      <image class="icon" src="/image/yuyue.png"/>
+      <view>约见老师</view>
+    </navigator>
+  </view>
+</view>

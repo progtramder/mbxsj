@@ -1,0 +1,32 @@
+.page-body {
+  background-color: white;
+}
+.nav-item {
+  height: 150rpx;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  border-style: solid;
+  border-width: 5rpx;
+  border-color:beige;
+  margin: 50rpx 50rpx;
+  border-radius: 10rpx;
+  color: orange;
+  font-weight: bold;
+  font-size: 35rpx;
+}
+.icon {
+  width: 50rpx;
+  height: 50rpx;
+  box-sizing: border-box;
+  margin-right: 10rpx;
+}
+.picture {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.picture image {
+  width: 750rpx;
+}

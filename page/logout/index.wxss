@@ -1,0 +1,11 @@
+
+.quit-button {
+  width: 90%;
+  margin-top: 50rpx;
+  background-color: #F56C6C;
+  color: white;
+}
+
+.hover {
+  background-color: #DEDEDE
+}

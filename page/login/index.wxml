@@ -1,0 +1,6 @@
+<view class="body-wrapper">
+  <view class="input-wrapper">
+      <input bindinput="getStudent" placeholder-class="placeholder" placeholder="请输入学号" />
+  </view>
+  <view bindtap="login" hover-class="hover-class" class="login">登陆</view>
+</view>

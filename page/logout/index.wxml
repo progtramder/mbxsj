@@ -1,0 +1,5 @@
+<view class="container">
+  <view class="page-body">
+    <button hover-class="hover"  class="quit-button" bindtap="quit">退出登陆</button>
+  </view>
+</view>

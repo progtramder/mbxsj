@@ -1,0 +1,33 @@
+<view class="page-body">
+    <navigator url="../logout/index" class="page-section">
+      <view class="student-info">
+        <image src="{{avatar}}"></image>
+        <text>{{student}}</text>
+        <view class="arrow"></view>
+      </view>
+    </navigator>
+    <view class="page-section">
+      <view class="title">
+      已报课程
+      </view>
+    </view>
+    <view class="page-section">
+      <view wx:for="{{courses}}" wx:key="item" class="weui-form-preview">
+          <view class="weui-form-preview__bd">
+              <view class="weui-form-preview__item">
+                  <view class="weui-form-preview__label preview-head">课程名称</view>
+                  <view class="weui-form-preview__value preview-head">{{item.course}}</view>
+              </view>
+              <view class="weui-form-preview__item">
+                  <view class="weui-form-preview__label">任课老师</view>
+                  <view class="weui-form-preview__value">{{item.teacher}}</view>
+              </view>
+              <view class="weui-form-preview__item">
+                  <view class="weui-form-preview__label">报名时间</view>
+                  <view class="weui-form-preview__value">{{index.transform(item.timestamp)}}</view>
+              </view>
+          </view>
+      </view>
+      <wxs src="./index.wxs" module="index" />
+    </view>
+  </view>

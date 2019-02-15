@@ -1,0 +1,22 @@
+<view class="container">
+  <view class="page-body">
+    <wxs src="./index.wxs" module="convert" />
+    <view wx:for="{{course}}" wx:key="item" wx:for-index="index" class="exhibit-item-wrapper">
+      <exhibit-item url=""
+        bindtap="onRegister"
+        data-index="{{index}}"
+        imgpath="/image/main.jpg"
+        title="课程名称：{{item.name}}"
+        body="授课老师：{{item.teacher}}"
+        footer="报名人数：{{item.number}}/{{item.total}}"
+      />
+      <view data-index="{{index}}" 
+        bindtap="onRegister" 
+        class="{{convert.transform(item).class}}"
+      >
+        {{convert.transform(item).text}}
+      </view>
+      <radio wx:if="{{item.registered}}" class="registed" color="#F56C6C"  checked="true"/>
+    </view>
+  </view>
+</view>

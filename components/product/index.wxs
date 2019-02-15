@@ -1,0 +1,6 @@
+var transform = function (product) {
+  var price = '￥' + product.price / 100
+  return price
+}
+
+module.exports.transform = transform

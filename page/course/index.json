@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "课程报名",
+  "usingComponents": {
+    "exhibit-item": "/components/exhibit/exhibit"
+  }
+}
