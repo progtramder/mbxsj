@@ -1,5 +1,10 @@
 const app = getApp()
 Page({
+  onLoad() {
+    wx.setNavigationBarTitle({
+      title: app.getStudentName(),
+    })
+  },
   quit() {
     wx.showModal({
       content: `确定退出登陆？`,

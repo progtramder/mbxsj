@@ -1,5 +1,5 @@
 var transform = function (item) {
-  if (item.registered) return { text: '取消报名', class: 'status-cancel' }
+  if (item.registered) return { text: '已报名', class: 'status-cancel' }
   switch(item.status) {
     case 'ready': return { text: '立即报名', class: 'status-ready'}
     case 'not': return { text: '报名未开始', class: 'status-not' }

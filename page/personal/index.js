@@ -9,7 +9,7 @@ Page({
   },
 
   async onShow() {
-    const res = await app.registerHistory(app.getSchool(), app.getStudent())
+    const res = await app.registerHistory()
     this.setData({
       courses: res.data
     })

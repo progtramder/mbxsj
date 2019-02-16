@@ -1,5 +1,5 @@
 const regeneratorRuntime = require("./page/common/runtime")
-const server = 'localhost'
+const server = 'localhost' //'xsj.chneic.sh.cn'
 App({
   globalData: {
   },
@@ -40,10 +40,10 @@ App({
     this.globalData.session_key = key
   },
 
-  cancel(school, student, course) {
+  promise(url) {
     return new Promise((resolve, reject) => {
       wx.request({
-        url: `https://${server}/cancel?school=${school}&student=${student}&course=${course}`,
+        url,
         header: {
           'content-type': 'application/json'
         },
@@ -55,105 +55,54 @@ App({
         }
       })
     })
+  },
+  cancel(course) {
+    const school = this.getSchool()
+    const student = this.getStudent()
+    const url = `https://${server}/cancel?school=${school}&student=${student}&course=${course}`
+    return this.promise(url)
   },
 
-  fetchCourse(school, student) {
-    return new Promise((resolve, reject) => {
-      wx.request({
-        url: `https://${server}/course?school=${school}&student=${student}`,
-        header: {
-          'content-type': 'application/json'
-        },
-        success: res => {
-          resolve(res.data)
-        },
-        fail: err => {
-          reject(err)
-        }
-      })
-    })
+  fetchCourse() {
+    const school = this.getSchool()
+    const student = this.getStudent()
+    const url = `https://${server}/course?school=${school}&student=${student}`
+    return this.promise(url)
   },
-  getStatus(school) {
-    return new Promise((resolve, reject) => {
-      wx.request({
-        url: `https://${server}/status?school=${school}`,
-        header: {
-          'content-type': 'application/json'
-        },
-        success: res => {
-          resolve(res.data)
-        },
-        fail: err => {
-          reject(err)
-        }
-      })
-    })
+
+  getStatus() {
+    const school = this.getSchool()
+    const url = `https://${server}/status?school=${school}`
+    return this.promise(url)
   },
-  register(school, student, course) {
-    return new Promise((resolve, reject) => {
-      wx.request({
-        url: `https://${server}/register?school=${school}&student=${student}&course=${course}`,
-        header: {
-          'content-type': 'application/json'
-        },
-        success: res => {
-          resolve(res.data)
-        },
-        fail: err => {
-          reject(err)
-        }
-      })
-    })
+
+  register(course) {
+    const school = this.getSchool()
+    const student = this.getStudent()
+    const url = `https://${server}/register?school=${school}&student=${student}&course=${course}`
+    return this.promise(url)
   },
-  async registerInfo(school, student) {
-    const res = await new Promise((resolve, reject) => {
-      wx.request({
-        url: `https://${server}/register-info?school=${school}&student=${student}`,
-        header: {
-          'content-type': 'application/json'
-        },
-        success: res => {
-          resolve(res.data)
-        },
-        fail: err => {
-          reject(err)
-        }
-      })
-    })
+
+  async registerInfo() {
+    const school = this.getSchool()
+    const student = this.getStudent()
+    const url = `https://${server}/register-info?school=${school}&student=${student}`
+    const res = await this.promise(url)
     return res
   },
-  async registerHistory(school, student) {
-    const res = await new Promise((resolve, reject) => {
-      wx.request({
-        url: `https://${server}/register-history?school=${school}&student=${student}`,
-        header: {
-          'content-type': 'application/json'
-        },
-        success: res => {
-          resolve(res.data)
-        },
-        fail: err => {
-          reject(err)
-        }
-      })
-    })
+
+  async registerHistory() {
+    const school = this.getSchool()
+    const student = this.getStudent()
+    const url = `https://${server}/register-history?school=${school}&student=${student}`
+    const res = await this.promise(url)
     return res
   },
-  async login(school, student) {
-    const res = await new Promise((resolve, reject) => {
-      wx.request({
-        url: `https://${server}/login?school=${school}&student=${student}`,
-        header: {
-          'content-type': 'application/json'
-        },
-        success: res => {
-          resolve(res.data)
-        },
-        fail: err => {
-          reject(err)
-        }
-      })
-    })
+
+  async login(student) {
+    const school = this.getSchool()
+    const url = `https://${server}/login?school=${school}&student=${student}`
+    const res = await this.promise(url)
     return res
   }
 })

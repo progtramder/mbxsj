@@ -4,23 +4,15 @@ Page({
   async onLoad() {
     try {
       wx.showNavigationBarLoading()
-      let res = await app.getStatus(app.getSchool())
-      this.status = res.status
-      const status = res.status == 'started' ? 'ready' : 'not'
-      res = await app.registerInfo(app.getSchool(), app.getStudent())
-      const registerCourse = res.course
-      res = await app.fetchCourse(app.getSchool(), app.getStudent())
-      const course = res.data
-      course.forEach(e => {
-        if (e.name == registerCourse) {
-          e.registered = true
-        }
-        e.status = e.total == e.number ? 'done' : status
-      })
-      this.setData({
-        course
-      })
+      await this.loadCourses()
       this.timeId = setInterval(this.timer, 1000)
+    } catch (err) {
+      wx.showModal({
+        content: '网络异常',
+        confirmColor: '#F56C6C',
+        confirmText: '知道了',
+        showCancel: false
+      })
     } finally {
       wx.hideNavigationBarLoading()
     }
@@ -30,43 +22,27 @@ Page({
     clearInterval(this.timeId)
   },
 
+  async loadCourses() {
+    let res = await app.getStatus()
+    const status = res.status == 'started' ? 'ready' : 'not'
+    res = await app.registerInfo()
+    const registerCourse = res.course
+    res = await app.fetchCourse()
+    const course = res.data
+    course.forEach(e => {
+      if (e.name == registerCourse) {
+        e.registered = true
+      }
+      e.status = e.total == e.number ? 'done' : status
+    })
+    this.setData({
+      course
+    })
+  },
+
   async timer() {
     try {
-      if (this.status != 'started') {
-        const res = await app.getStatus(app.getSchool())
-        if (this.status != res.status) {
-          const course = this.data.course
-          course.forEach(e => {
-            e.status = 'ready'
-          })
-          this.setData({
-            course
-          })
-          this.status = res.status
-        }
-        return
-      }
-
-      let res = await app.registerInfo(app.getSchool(), app.getStudent())
-      const registerCourse = res.course
-      res = await app.fetchCourse(app.getSchool(), app.getStudent())
-      const course = this.data.course
-      res.data.forEach((e, index) => {
-        if (e.name == registerCourse) {
-          course[index].registered = true
-        } else {
-          delete course[index].registered
-        }
-        course[index].number = e.number
-        if (e.number == e.total) {
-          course[index].status = 'done'
-        } else {
-          course[index].status = 'ready'
-        }
-      })
-      this.setData({
-        course
-      })
+      await this.loadCourses()
     } catch(err) {
       console.log('网络异常')
     }
@@ -86,14 +62,14 @@ Page({
     const course = this.data.course[index]
     const iCourse = this.iRegistered()
     if (iCourse == index) {
-      wx.showModal({
+      /*wx.showModal({
         content: `是要取消"${course.name}"课程的报名吗？`,
         confirmColor: '#F56C6C',
         confirmText: '是的',
         cancelText: '不是',
         success: (res) => {
           if (res.confirm) {
-            app.cancel(app.getSchool(), app.getStudent(), course.name).then(res => {
+            app.cancel(course.name).then(res => {
               wx.showModal({
                 content: res.errMsg,
                 confirmColor: '#F56C6C',
@@ -113,7 +89,7 @@ Page({
             })
           }
         }
-      })
+      })*/
       return
     }
     if (course.status == 'ready') {
@@ -131,7 +107,7 @@ Page({
         confirmColor: '#F56C6C',
         success: (res) => {
           if (res.confirm) {
-            app.register(app.getSchool(), app.getStudent(), course.name).then(res => {
+            app.register(course.name).then(res => {
               wx.showModal({
                 content: res.errMsg,
                 confirmColor: '#F56C6C',
