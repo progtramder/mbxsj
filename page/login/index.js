@@ -28,7 +28,7 @@ Page({
       }
 
       try {
-        wx.showNavigationBarLoading()
+        wx.showLoading()
         const res = await app.login(student)
         if (res.errCode == 1) {
           this.alert("学号不存在")
@@ -40,7 +40,7 @@ Page({
       } catch(err) {
         this.alert('网络异常')
       } finally {
-        wx.hideNavigationBarLoading()
+        wx.hideLoading()
       }
     } else {
       this.alert('学号格式错误')

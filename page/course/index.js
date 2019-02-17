@@ -7,12 +7,7 @@ Page({
       await this.loadCourses()
       this.timeId = setInterval(this.timer, 1000)
     } catch (err) {
-      wx.showModal({
-        content: '网络异常',
-        confirmColor: '#F56C6C',
-        confirmText: '知道了',
-        showCancel: false
-      })
+      this.alert('网络异常')
     } finally {
       wx.hideNavigationBarLoading()
     }
@@ -70,22 +65,9 @@ Page({
         success: (res) => {
           if (res.confirm) {
             app.cancel(course.name).then(res => {
-              wx.showModal({
-                content: res.errMsg,
-                confirmColor: '#F56C6C',
-                confirmText: '知道了',
-                showCancel: false
-              })
-              if (res.errCode == 0) {
-                delete course.registered
-              }
+              this.alert(res.errMsg)
             }).catch(err => {
-              wx.showModal({
-                content: '网络异常',
-                confirmColor: '#F56C6C',
-                confirmText: '知道了',
-                showCancel: false
-              })
+              this.alert('网络异常')
             })
           }
         }
@@ -94,12 +76,7 @@ Page({
     }
     if (course.status == 'ready') {
       if (iCourse != -1) {
-        wx.showModal({
-          content: '只能报一门课程',
-          confirmColor: '#F56C6C',
-          confirmText: '知道了',
-          showCancel: false
-        })
+        this.alert('只能报一门课程')
         return
       }
       wx.showModal({
@@ -108,26 +85,22 @@ Page({
         success: (res) => {
           if (res.confirm) {
             app.register(course.name).then(res => {
-              wx.showModal({
-                content: res.errMsg,
-                confirmColor: '#F56C6C',
-                confirmText: '知道了',
-                showCancel: false
-              })
-              /*if (res.errCode == 0) {
-                course.registered = true
-              }*/
+              this.alert(res.errMsg)
             }).catch(err => {
-              wx.showModal({
-                content: '网络异常',
-                confirmColor: '#F56C6C',
-                confirmText: '知道了',
-                showCancel: false
-              })
+              this.alert('网络异常')
             })
           }
         }
       })
     } 
   },
+
+  alert(content) {
+    wx.showModal({
+      content,
+      confirmColor: '#F56C6C',
+      confirmText: '知道了',
+      showCancel: false
+    })
+  }
 })
